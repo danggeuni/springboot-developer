@@ -24,6 +24,7 @@ public class BlogViewController {
         List<ArticleListViewResponse> articles = blogService.findAll().stream()
                 .map(ArticleListViewResponse::new)
                 .toList();
+
         model.addAttribute("articles", articles);
 
         return "articleList";
