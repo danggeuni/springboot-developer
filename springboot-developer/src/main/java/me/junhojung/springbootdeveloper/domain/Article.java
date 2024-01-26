@@ -17,16 +17,24 @@ public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본키를 1씩 자동 증가
-    @Column(name = "id", updatable = false)
+    @Column (name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "title", nullable = false)
+    @Column (name = "title", nullable = false)
     private String title;
 
-    @Column(name = "content", nullable = false)
+    @Column (name = "content", nullable = false)
     private String content;
 
-    @Builder // 빌더 패턴으로 객체 생성
+    @CreatedDate
+    @Column (name = "created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column (name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @Builder
     public Article(String title, String content){
         this.title = title;
         this.content = content;
@@ -36,12 +44,4 @@ public class Article {
         this.title = title;
         this.content = content;
     }
-
-    @CreatedDate
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
 }

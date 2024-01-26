@@ -29,4 +29,13 @@ public class BlogViewController {
 
         return "articleList";
     }
+
+    @GetMapping("/articles/{id}")
+    public String getArticle(@PathVariable Long id, Model model){
+        Article article = blogService.finById(id);
+
+        model.addAttribute("article", new ArticleViewResponse(article));
+
+        return "article";
+    }
 }
